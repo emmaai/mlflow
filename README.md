@@ -8,3 +8,8 @@
 
 # Run MLflow server
 `docker-compose up`
+
+# Use MLflow track your experiment
+See `example.py` presumably 
+- you have write access to aws s3 and config the credential correctly
+- the experiment is run on the same ec2 instance
