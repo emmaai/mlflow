@@ -18,7 +18,11 @@ services:
     restart: always
     depends_on:
       - postgres
-    command: mlflow server --backend-store-uri postgresql://$DB_USERNAME:$DB_PASSWORD@$DB_HOSTNAME/$DB_DATABASE
+    command: tail -f /dev/null
+      # command: mlflow server --backend-store-uri postgresql://$DB_USERNAME:$DB_PASSWORD@$DB_HOSTNAME/$DB_DATABASE
     ports:
       - "5000:5000"
+    volumes:
+      - /var/run/postgresql:/var/run/postgresql
+
 
