@@ -1,0 +1,5 @@
+boto3
+prometheus-flask-exporter
+pymysql
+cryptography
+psycopg2-binary

@@ -1,0 +1,24 @@
+version: "3.7"
+services:
+  postgres:
+    image: postgis/postgis:12-3.3
+    environment:
+      - POSTGRES_DB=mlflow-tracking-server-db
+      - POSTGRES_PASSWORD=mlflow
+      - POSTGRES_USER=mlflow
+    restart: always
+
+  mlflow:
+    image: mlflow:test 
+    environment:
+      - DB_HOSTNAME=postgres
+      - DB_USERNAME=mlflow
+      - DB_PASSWORD=mlflow
+      - DB_DATABASE=mlflow-tracking-server-db
+    restart: always
+    depends_on:
+      - postgres
+    command: mlflow server --backend-store-uri postgresql://$DB_USERNAME:$DB_PASSWORD@$DB_HOSTNAME/$DB_DATABASE
+    ports:
+      - "5000:5000"
+
